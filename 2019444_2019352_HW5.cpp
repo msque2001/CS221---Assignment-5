@@ -13,7 +13,7 @@ class AVL
 {
     struct Node
     {
-        string number;
+        int number;
         string name;
         string address;
         string email;
@@ -50,6 +50,7 @@ class AVL
 
     Node *singleRotateWithLeft(Node *k2)
     {
+        cout << "singleRotateWithLeft called\n";
         Node *k1 = k2->leftPtr;
 
         k2->leftPtr = k1->rightPtr;
@@ -63,6 +64,7 @@ class AVL
 
     Node *singleRotateWithRight(Node *k1)
     {
+        cout << "singleRotateWithRight called\n";
         Node *k2 = k1->rightPtr;
 
         k1->rightPtr = k2->leftPtr;
@@ -86,7 +88,7 @@ class AVL
         return singleRotateWithRight(k1);
     }
 
-    Node *insert(Node *nodePtr, string num, string name, string add, string email)
+    Node *insert(Node *nodePtr, int num, string name, string add, string email)
     {
         if(!nodePtr)
         {
@@ -137,7 +139,9 @@ public:
 
     void Insert()
     {
-        string number, name, address, email;
+        string name, address, email;
+        name = address = email = "Saaim";
+        int number;
 
         cout << "\nPlease enter the number: ", cin >> number, cout << endl;
         cin.ignore();
@@ -150,7 +154,7 @@ public:
 
     void Search()
     {
-        string number;
+        int number;
         cout << "\nPlease enter the number you want to search: ", cin >> number, cout << endl;
 
         Node *tempNode = root;
@@ -189,8 +193,6 @@ int main()
     myTree.Insert();
     myTree.Insert();
     myTree.Insert();
-    myTree.Search();
-    myTree.Search();
     myTree.Search();
 
     return 0;
