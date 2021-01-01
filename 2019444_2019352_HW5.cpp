@@ -48,7 +48,6 @@ class AVL
 
     Node* singleRotateWithLeft(Node* k2)
     {
-        cout << "singleRotateWithLeft called\n";
         Node* k1 = k2->leftPtr;
 
         k2->leftPtr = k1->rightPtr;
@@ -59,7 +58,6 @@ class AVL
 
     Node* singleRotateWithRight(Node* k1)
     {
-        cout << "singleRotateWithRight called\n";
         Node* k2 = k1->rightPtr;
 
         k1->rightPtr = k2->leftPtr;
@@ -368,8 +366,11 @@ public:
 
         return root;
     }
-    void remove(int num)
+    void remove()
     {
+        int num;
+        cout << "\nPlease enter the number you want to delete: ", cin >> num, cout << endl;
+        
         deleteNode(root, num);
     }
     void in()
@@ -390,22 +391,64 @@ public:
 
 };
 
+int menu();
+
 int main()
 {
-    AVL myTree;
-    myTree.Insert();
-    myTree.Insert();
-    myTree.Insert();
-    myTree.Insert();
-    myTree.Insert();
- 
-    
-    myTree.in();
-    cout << endl;
-    cout << "del   : ";
-    myTree.remove(2);
-    myTree.remove(1);
-    myTree.in();
+    AVL PhoneBook;
+    bool isDone = false;
+    int choice;
+
+    while(!isDone)
+    {
+        choice = menu();
+        switch (choice)
+        {
+        case 1:
+            PhoneBook.Insert();
+            break;
+        case 2:
+            PhoneBook.remove();
+            break;
+        case 3:
+            PhoneBook.Search_num();
+            break;
+        case 4:
+            PhoneBook.in();
+            break;
+        case 5:
+            PhoneBook.pre();
+            break;
+        case 6:
+            PhoneBook.post();
+            break;
+        case 7:
+            isDone = true;
+            cout << "\nBye, bye!\n";
+            break;
+        
+        default:
+            cout << "\nIncorrect choice!\n";
+            break;
+        }
+    }
+
 
     return 0;
+}
+
+int menu()
+{
+    int choice;
+
+    cout << "\n1) Insert Contact";
+    cout << "\n2) Delete Contact";
+    cout << "\n3) Search Contact";
+    cout << "\n4) Display Contact (In-order)";
+    cout << "\n5) Display Contact (Pre-order)";
+    cout << "\n6) Display Contact (Post-order)";
+    cout << "\n7) Exit Program\n";
+
+    cout << "\nPlease enter the number corrensponding to your choice: ", cin >> choice, cout << endl;
+    return choice;
 }
